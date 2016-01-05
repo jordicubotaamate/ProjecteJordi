@@ -49,13 +49,7 @@ public class RegisterActivity extends AppCompatActivity implements LoaderCallbac
      */
     private static final int REQUEST_READ_CONTACTS = 0;
 
-    /**
-     * A dummy authentication store containing known user names and passwords.
-     * TODO: remove after connecting to a real authentication system.
-     */
-    private static final String[] DUMMY_CREDENTIALS = new String[]{
-            "foo@example.com:hello", "bar@example.com:world"
-    };
+
     /**
      * Keep track of the login task to ensure we can cancel it if requested.
      */
@@ -70,7 +64,7 @@ public class RegisterActivity extends AppCompatActivity implements LoaderCallbac
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
+        setContentView(R.layout.activity_register);
         //Obrim instancia a la BBDD
         loginDataBaseAdapter = new LoginDataBaseAdapter(this);
         loginDataBaseAdapter = loginDataBaseAdapter.open();
@@ -317,20 +311,9 @@ public class RegisterActivity extends AppCompatActivity implements LoaderCallbac
         @Override
         protected Boolean doInBackground(Void... params) {
             // TODO: attempt authentication against a network service.
-            loginDataBaseAdapter.insertEntry("jordi@hola.com","holat");
             try {
-                // Agafem el password de la persona per comparar. Stored password és el de la BBDD
-                String storedPassword=loginDataBaseAdapter.getSinlgeEntry(mEmail);
-
-                // Comprovem amb l'introduït
-                if(mPassword.equals(storedPassword))
-                {
-                    return true;
-                }
-                else
-                {
-                    return false;
-                }
+                loginDataBaseAdapter.insertEntry(mEmail,mPassword);
+                return true;
             } catch (Exception e) {
                 return false;
             }
