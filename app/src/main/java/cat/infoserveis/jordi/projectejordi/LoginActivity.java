@@ -1,4 +1,5 @@
 package cat.infoserveis.jordi.projectejordi;
+//package cat.infoserveis.jordi.projectejordi.BasesDeDades;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
@@ -28,9 +29,12 @@ import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import cat.infoserveis.jordi.projectejordi.BasesDeDades.LoginDataBaseAdapter;
 
 import static android.Manifest.permission.READ_CONTACTS;
 
@@ -38,6 +42,7 @@ import static android.Manifest.permission.READ_CONTACTS;
  * A login screen that offers login via email/password.
  */
 public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<Cursor> {
+    LoginDataBaseAdapter loginDataBaseAdapter;
 
     /**
      * Id to identity READ_CONTACTS permission request.
@@ -66,6 +71,10 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        //Obrim instancia a la BBDD
+        loginDataBaseAdapter = new LoginDataBaseAdapter(this);
+        loginDataBaseAdapter = loginDataBaseAdapter.open();
+
         // Set up the login form.
         mEmailView = (AutoCompleteTextView) findViewById(R.id.email);
         populateAutoComplete();
@@ -191,13 +200,13 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
     }
 
     private boolean isEmailValid(String email) {
-        //TODO: Replace this with your own logic
+        //Si no té @ no es considera email vàlid
         return email.contains("@");
     }
 
     private boolean isPasswordValid(String password) {
-        //TODO: Replace this with your own logic
-        return password.length() > 4;
+        //Password ha de tenir ms de 3 caracters
+        return password.length() > 3;
     }
 
     /**
@@ -299,6 +308,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         private final String mEmail;
         private final String mPassword;
 
+
         UserLoginTask(String email, String password) {
             mEmail = email;
             mPassword = password;
@@ -307,15 +317,25 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         @Override
         protected Boolean doInBackground(Void... params) {
             // TODO: attempt authentication against a network service.
-
+            loginDataBaseAdapter.insertEntry("jordi@hola.com","holat");
             try {
-                // Simulate network access.
-                Thread.sleep(2000);
-            } catch (InterruptedException e) {
+                // Agafem el password de la persona per comparar. Stored password és el de la BBDD
+                String storedPassword=loginDataBaseAdapter.getSinlgeEntry(mEmail);
+
+                // Comprovem amb l'introduït
+                if(mPassword.equals(storedPassword))
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            } catch (Exception e) {
                 return false;
             }
 
-            for (String credential : DUMMY_CREDENTIALS) {
+            /*for (String credential : DUMMY_CREDENTIALS) {
                 String[] pieces = credential.split(":");
                 if (pieces[0].equals(mEmail)) {
                     // Account exists, return true if the password matches.
@@ -323,8 +343,8 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                 }
             }
 
-            // TODO: register the new account here.
-            return true;
+
+            return true;*/
         }
 
         @Override
