@@ -312,8 +312,15 @@ public class RegisterActivity extends AppCompatActivity implements LoaderCallbac
         protected Boolean doInBackground(Void... params) {
             // TODO: attempt authentication against a network service.
             try {
-                loginDataBaseAdapter.insertEntry(mEmail,mPassword);
-                return true;
+                if(loginDataBaseAdapter.getSinlgeEntry(mEmail).isEmpty())
+                {
+                    loginDataBaseAdapter.insertEntry(mEmail,mPassword);
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
             } catch (Exception e) {
                 return false;
             }
@@ -338,8 +345,8 @@ public class RegisterActivity extends AppCompatActivity implements LoaderCallbac
             if (success) {
                 finish();
             } else {
-                mPasswordView.setError(getString(R.string.error_incorrect_password));
-                mPasswordView.requestFocus();
+                mEmailView.setError(getString(R.string.error_taken_email));
+                mEmailView.requestFocus();
             }
         }
 
