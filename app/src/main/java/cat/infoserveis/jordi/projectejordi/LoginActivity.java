@@ -352,7 +352,9 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             showProgress(false);
 
             if (success) {
-                finish();
+                Intent intentCorrecte = new Intent(LoginActivity.this, ScrollingActivity.class);
+                intentCorrecte.putExtra("mail",mEmail);
+                LoginActivity.this.startActivity(intentCorrecte);
             } else {
                 mPasswordView.setError(getString(R.string.error_incorrect_password));
                 mPasswordView.requestFocus();
