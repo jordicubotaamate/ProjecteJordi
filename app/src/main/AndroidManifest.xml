@@ -30,6 +30,15 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="cat.infoserveis.jordi.projectejordi.LoginActivity" />
         </activity>
+        <activity
+            android:name=".ScrollingActivity"
+            android:label="@string/title_activity_scrolling"
+            android:parentActivityName=".LoginActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="cat.infoserveis.jordi.projectejordi.LoginActivity" />
+        </activity>
     </application>
 
 </manifest>
