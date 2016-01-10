@@ -69,7 +69,7 @@ public class LoginDataBaseAdapter
         if(cursor.getCount()<1) // UserName Not Exist
         {
             cursor.close();
-            return "NOT EXIST";
+            return "";//Aixi podem utilitzar aquesta funcio per saber si l'usuari existeix o no.
         }
         cursor.moveToFirst();
         String password= cursor.getString(cursor.getColumnIndex("PASSWORD"));
