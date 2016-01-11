@@ -33,11 +33,11 @@
         <activity
             android:name=".ScrollingActivity"
             android:label="@string/title_activity_scrolling"
-            android:parentActivityName=".LoginActivity"
+            android:parentActivityName=".MainActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="cat.infoserveis.jordi.projectejordi.LoginActivity" />
+                android:value="cat.infoserveis.jordi.projectejordi.MainActivity" />
         </activity>
         <!--
  ATTENTION: This was auto-generated to add Google Play services to your project for
