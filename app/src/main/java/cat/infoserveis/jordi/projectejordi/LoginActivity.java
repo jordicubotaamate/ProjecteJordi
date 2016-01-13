@@ -42,20 +42,18 @@ import static android.Manifest.permission.INTERNET;
 import static android.Manifest.permission.READ_CONTACTS;
 
 /**
- * A login screen that offers login via email/password.
+ * Activitat per a registrar usuaris
  */
 public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<Cursor> {
     LoginDataBaseAdapter loginDataBaseAdapter;
 
     /**
-     * Id to identity READ_CONTACTS permission request.
+     * ID per a llegir contactes
      */
     private static final int REQUEST_READ_CONTACTS = 0;
 
 
-    /**
-     * Keep track of the login task to ensure we can cancel it if requested.
-     */
+
     private UserLoginTask mAuthTask = null;
 
     // UI references.
@@ -154,9 +152,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
 
     /**
-     * Attempts to sign in or register the account specified by the login form.
-     * If there are form errors (invalid email, missing fields, etc.), the
-     * errors are presented and no actual login attempt is made.
+     * Si les dades són vàlides, passem a fer el registre
      */
     private void attemptLogin() {
         if (mAuthTask != null) {
@@ -306,8 +302,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
     }
 
     /**
-     * Represents an asynchronous login/registration task used to authenticate
-     * the user.
+     * Aquesta tasc<a asincrona és la que connecta amb la BBDD
      */
     public class UserLoginTask extends AsyncTask<Void, Void, Boolean> {
 
@@ -322,8 +317,6 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
         @Override
         protected Boolean doInBackground(Void... params) {
-            // TODO: attempt authentication against a network service.
-            loginDataBaseAdapter.insertEntry("jordi@hola.com","holat");
             try {
                 // Agafem el password de la persona per comparar. Stored password és el de la BBDD
                 String storedPassword=loginDataBaseAdapter.getSinlgeEntry(mEmail);
