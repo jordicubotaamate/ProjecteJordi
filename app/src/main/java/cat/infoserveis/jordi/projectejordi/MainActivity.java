@@ -19,8 +19,8 @@ import cat.infoserveis.jordi.projectejordi.BasesDeDades.FinancesDataBaseAdapter;
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
     FinancesDataBaseAdapter financesBBDD;
-    public int id;
-    public  String email;
+//    int id;
+    String email;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,7 +50,7 @@ public class MainActivity extends AppCompatActivity
         //Agafem dades d lintent
         Intent intent = getIntent();
 
-        id = intent.getIntExtra("ID",10);
+        int id = intent.getIntExtra("ID",10);
         //email = intent.getStringExtra("mail");
         //BBDD
         financesBBDD = new FinancesDataBaseAdapter(this);

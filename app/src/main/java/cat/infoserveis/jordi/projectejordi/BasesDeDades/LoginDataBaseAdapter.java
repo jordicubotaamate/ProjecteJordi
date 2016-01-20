@@ -73,7 +73,7 @@ public class LoginDataBaseAdapter
             return "";//Aixi podem utilitzar aquesta funcio per saber si l'usuari existeix o no.
         }
         cursor.moveToFirst();
-        String password= cursor.getString(cursor.getColumnIndex("PASSWORD"));
+        String password = cursor.getString(cursor.getColumnIndex("PASSWORD"));
         cursor.close();
         return password;
     }
@@ -91,6 +91,7 @@ public class LoginDataBaseAdapter
     public int getUserID(String userName)//perObtenir luser i passarlo per l'intent
     {
         Cursor cursor=db.query("LOGIN", null, " USERNAME=?", new String[]{userName}, null, null, null);
+        cursor.moveToFirst();
         int id = cursor.getInt(cursor.getColumnIndex("ID"));
         cursor.close();
         return id;

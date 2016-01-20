@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/LinearLayout1"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="#FFFFFF"
+    android:padding="2dp" >
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="+100"
+        android:id="@+id/Transaccio" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Comentari"
+        android:id="@+id/Comentari"
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@+id/Transaccio"
+        android:layout_toEndOf="@+id/Transaccio"
+        android:layout_marginLeft="10dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:id="@+id/Total"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:text="Total: 1000"
+        android:textAlignment="textEnd"
+        android:layout_toEndOf="@+id/Comentari" />
+</RelativeLayout>
