@@ -9,10 +9,8 @@ import android.content.Context;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.CheckBox;
 import android.widget.TextView;
 
 import cat.infoserveis.jordi.projectejordi.R;
@@ -93,7 +91,7 @@ public class TransaccioAdaptador extends BaseAdapter
 
         if (convertView == null)
         {
-            convertView = inflater.inflate(R.layout.list_row_posts, null);
+            convertView = inflater.inflate(R.layout.transacciolist, null);
 
             convertViewCounter++;
             Log.v(TAG, convertViewCounter + " convertViews have been created");
@@ -104,7 +102,8 @@ public class TransaccioAdaptador extends BaseAdapter
                     .findViewById(R.id.Transaccio);
             holder.comentari = (TextView) convertView
                     .findViewById(R.id.Comentari);
-            holder.total = (CheckBox) convertView.findViewById(R.id.Total);
+            holder.total = (TextView) convertView
+                    .findViewById(R.id.Total);
 
             convertView.setTag(holder);
 

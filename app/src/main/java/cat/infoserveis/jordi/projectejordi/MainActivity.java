@@ -13,6 +13,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ListView;
+
+import java.util.ArrayList;
 
 import cat.infoserveis.jordi.projectejordi.BasesDeDades.FinancesDataBaseAdapter;
 
@@ -60,7 +63,19 @@ public class MainActivity extends AppCompatActivity
         financesBBDD.insertEntry(12.233,id,104.12);
         financesBBDD.insertEntry(649.2,id,1004.12);
 
+        ListView l = (ListView) findViewById(R.id.listView);
 
+
+        Transaccio t1 = new Transaccio("Testing",20,50);
+        Transaccio t2 = new Transaccio("Testing",203,504);
+        Transaccio t3 = new Transaccio("Testing",2033,5330);
+        ArrayList<Transaccio> ArrTran = new ArrayList<>();
+        ArrTran.add(t1);
+        ArrTran.add(t2);
+        ArrTran.add(t3);
+
+        TransaccioAdaptador adap = new TransaccioAdaptador(this, ArrTran);
+        l.setAdapter(adap);
     }
 
     @Override

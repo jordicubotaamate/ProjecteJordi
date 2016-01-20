@@ -13,7 +13,7 @@ public class Transaccio implements Parcelable {
     private String concepte;
     private double total;
 
-    public Transaccio(String concepte, int transaccio, int total) {
+    public Transaccio(String concepte, double transaccio, double total) {
         this.concepte = concepte;
         this.transaccio = transaccio;
         this.total = total;
