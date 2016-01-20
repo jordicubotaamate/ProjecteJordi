@@ -8,6 +8,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
+import android.widget.Toast;
 
 public class LoginDataBaseAdapter
 {
@@ -23,11 +24,11 @@ public class LoginDataBaseAdapter
     // Context of the application using the database.
     private final Context context;
     // Database open/upgrade helper
-    private DataBaseHelper dbHelper;
+    private LoginDataBaseHelper dbHelper;
     public  LoginDataBaseAdapter(Context _context)
     {
         context = _context;
-        dbHelper = new DataBaseHelper(context, DATABASE_NAME, null, DATABASE_VERSION);
+        dbHelper = new LoginDataBaseHelper(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
     public  LoginDataBaseAdapter open() throws SQLException
     {
@@ -47,13 +48,13 @@ public class LoginDataBaseAdapter
     public void insertEntry(String userName,String password)
     {
         ContentValues newValues = new ContentValues();
-        // Assign values for each row.
+        // Assignem valors.
         newValues.put("USERNAME", userName);
         newValues.put("PASSWORD",password);
 
-        // Insert the row into your table
+        // Insert insertem la columna a la bbdd
         db.insert("LOGIN", null, newValues);
-        ///Toast.makeText(context, "Reminder Is Successfully Saved", Toast.LENGTH_LONG).show();
+        //Toast.makeText(context, "Usuari registrat correctament", Toast.LENGTH_SHORT).show();
     }
     public int deleteEntry(String UserName)
     {
@@ -86,5 +87,12 @@ public class LoginDataBaseAdapter
 
         String where="USERNAME = ?";
         db.update("LOGIN",updatedValues, where, new String[]{userName});
+    }
+    public int getUserID(String userName)//perObtenir luser i passarlo per l'intent
+    {
+        Cursor cursor=db.query("LOGIN", null, " USERNAME=?", new String[]{userName}, null, null, null);
+        int id = cursor.getInt(cursor.getColumnIndex("ID"));
+        cursor.close();
+        return id;
     }
 }

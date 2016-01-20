@@ -8,9 +8,9 @@ import android.database.sqlite.SQLiteDatabase.CursorFactory;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
-public class DataBaseHelper extends SQLiteOpenHelper
+public class LoginDataBaseHelper extends SQLiteOpenHelper
 {
-    public DataBaseHelper(Context context, String name,CursorFactory factory, int version)
+    public LoginDataBaseHelper(Context context, String name, CursorFactory factory, int version)
     {
         super(context, name, factory, version);
     }

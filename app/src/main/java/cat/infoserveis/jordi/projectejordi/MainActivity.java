@@ -14,8 +14,13 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import cat.infoserveis.jordi.projectejordi.BasesDeDades.FinancesDataBaseAdapter;
+
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+    FinancesDataBaseAdapter financesBBDD;
+    public int id;
+    public  String email;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +46,21 @@ public class MainActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        //Agafem dades d lintent
+        Intent intent = getIntent();
+
+        id = intent.getIntExtra("ID",10);
+        //email = intent.getStringExtra("mail");
+        //BBDD
+        financesBBDD = new FinancesDataBaseAdapter(this);
+        financesBBDD = financesBBDD.open();
+
+        financesBBDD.insertEntry(69.2,id,100.12);
+        financesBBDD.insertEntry(12.233,id,104.12);
+        financesBBDD.insertEntry(649.2,id,1004.12);
+
+
     }
 
     @Override

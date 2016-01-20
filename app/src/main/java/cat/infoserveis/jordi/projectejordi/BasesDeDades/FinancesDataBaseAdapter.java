@@ -5,29 +5,29 @@ package cat.infoserveis.jordi.projectejordi.BasesDeDades;
  */
 import android.content.ContentValues;
 import android.content.Context;
-import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
+import android.widget.Toast;
 
 public class FinancesDataBaseAdapter
 {
-    static final String DATABASE_NAME = "Finances.db";
+    static final String DATABASE_NAME = "finances.db";
     static final int DATABASE_VERSION = 1;
     public static final int NAME_COLUMN = 1;
     // TODO: Create public field for each column in your table.
     // SQL Statement to create a new database.
     static final String DATABASE_CREATE = "create table "+"FINANCES"+
-            "( " +"ID"+" integer primary key autoincrement,"+ "ID-OWNER  integer, AMOUNT float, DATE DATE, TOTAL-MONEY float); ";
+            "( " +"ID"+" integer primary key autoincrement,"+ "IDOWNER  integer, AMOUNT real, "/*DATE DATE,*/+" TOTALMONEY real); ";
     // Variable to hold the database instance*/
     public  SQLiteDatabase db;
     // Context of the application using the database.
     private final Context context;
     // Database open/upgrade helper
-    private DataBaseHelper dbHelper;
+    private FinancesDataBaseHelper dbHelper;
     public FinancesDataBaseAdapter(Context _context)
     {
         context = _context;
-        dbHelper = new DataBaseHelper(context, DATABASE_NAME, null, DATABASE_VERSION);
+        dbHelper = new FinancesDataBaseHelper(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
     public FinancesDataBaseAdapter open() throws SQLException
     {
@@ -44,47 +44,17 @@ public class FinancesDataBaseAdapter
         return db;
     }
 
-    public void insertEntry(String userName,String password)
+    public void insertEntry(double amount, int IDowner/*, Date date*/, double totalMoney)
     {
         ContentValues newValues = new ContentValues();
-        // Assign values for each row.
-        newValues.put("USERNAME", userName);
-        newValues.put("PASSWORD",password);
+        // Assignem valors
+        newValues.put("IDOWNER",IDowner);
+        newValues.put("AMOUNT", amount);
+        //newValues.put("DATE",);
+        newValues.put("TOTALMONEY",totalMoney);
 
-        // Insert the row into your table
-        db.insert("LOGIN", null, newValues);
-        ///Toast.makeText(context, "Reminder Is Successfully Saved", Toast.LENGTH_LONG).show();
-    }
-    public int deleteEntry(String UserName)
-    {
-        //String id=String.valueOf(ID);
-        String where="USERNAME=?";
-        int numberOFEntriesDeleted= db.delete("LOGIN", where, new String[]{UserName}) ;
-        // Toast.makeText(context, "Number fo Entry Deleted Successfully : "+numberOFEntriesDeleted, Toast.LENGTH_LONG).show();
-        return numberOFEntriesDeleted;
-    }
-    public String getSinlgeEntry(String userName)
-    {
-        Cursor cursor=db.query("LOGIN", null, " USERNAME=?", new String[]{userName}, null, null, null);
-        if(cursor.getCount()<1) // UserName Not Exist
-        {
-            cursor.close();
-            return "";//Aixi podem utilitzar aquesta funcio per saber si l'usuari existeix o no.
-        }
-        cursor.moveToFirst();
-        String password= cursor.getString(cursor.getColumnIndex("PASSWORD"));
-        cursor.close();
-        return password;
-    }
-    public void  updateEntry(String userName,String password)
-    {
-        // Define the updated row content.
-        ContentValues updatedValues = new ContentValues();
-        // Assign values for each row.
-        updatedValues.put("USERNAME", userName);
-        updatedValues.put("PASSWORD",password);
-
-        String where="USERNAME = ?";
-        db.update("LOGIN",updatedValues, where, new String[]{userName});
+        // Insertem la columna a la BBDD
+        db.insert("FINANCES", null, newValues);
+        Toast.makeText(context, "Sessió iniciada correctament", Toast.LENGTH_SHORT).show();
     }
 }
