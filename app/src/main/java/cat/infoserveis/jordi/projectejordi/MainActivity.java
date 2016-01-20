@@ -60,19 +60,28 @@ public class MainActivity extends AppCompatActivity
         financesBBDD = financesBBDD.open();
 
         financesBBDD.insertEntry(69.2,id,100.12);
-        financesBBDD.insertEntry(12.233,id,104.12);
-        financesBBDD.insertEntry(649.2,id,1004.12);
+        financesBBDD.insertEntry(-12.233,id,104.12);
+        financesBBDD.insertEntry(-649.2,id,1004.12);
 
         ListView l = (ListView) findViewById(R.id.listView);
 
 
-        Transaccio t1 = new Transaccio("Testing",20,50);
-        Transaccio t2 = new Transaccio("Testing",203,504);
-        Transaccio t3 = new Transaccio("Testing",2033,5330);
+        Transaccio t1 = new Transaccio("Nòmina",5000,6000);
+        Transaccio t2 = new Transaccio("Cotxe",-4000,2000);
+        Transaccio t3 = new Transaccio("Hotel Mireia",-330,1670);
+        Transaccio t4 = new Transaccio("Loteria",100000,100670);
+        Transaccio t5 = new Transaccio("Tous",-1000,90670);
+        Transaccio t6 = new Transaccio("Viatge",-4000,50670);
+
+
         ArrayList<Transaccio> ArrTran = new ArrayList<>();
         ArrTran.add(t1);
         ArrTran.add(t2);
         ArrTran.add(t3);
+        ArrTran.add(t4);
+        ArrTran.add(t5);
+        ArrTran.add(t6);
+
 
         TransaccioAdaptador adap = new TransaccioAdaptador(this, ArrTran);
         l.setAdapter(adap);

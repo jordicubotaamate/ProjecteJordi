@@ -6,6 +6,8 @@ package cat.infoserveis.jordi.projectejordi;
 import java.util.ArrayList;
 
 import android.content.Context;
+import android.graphics.Color;
+import android.provider.CalendarContract;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -112,7 +114,16 @@ public class TransaccioAdaptador extends BaseAdapter
 
 
         // Setting all values in listview
-        holder.transaccio.setText(Double.toString(data.get(position).getTransaccio()));
+        Double transaccio = data.get(position).getTransaccio();
+        holder.transaccio.setText(Double.toString(transaccio));
+        if(transaccio<0)
+        {
+            holder.transaccio.setTextColor(Color.RED);
+        }
+        else
+        {
+            holder.transaccio.setTextColor(Color.rgb(52,154,78));
+        }
         holder.comentari.setText(data.get(position).getConcepte());
         holder.total.setText(Double.toString(data.get(position).getTotal()));
 
