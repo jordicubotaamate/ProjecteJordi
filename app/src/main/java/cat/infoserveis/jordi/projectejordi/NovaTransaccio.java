@@ -54,9 +54,16 @@ public class NovaTransaccio extends AppCompatActivity {
             public void onClick(View v) {
                 //Agafemdades dels views
                 String conceptet = concepte.getText().toString();
-                Double quantitat = Double.parseDouble(quant.getText().toString());
-                Double total = bbdd.getTotalUltima(id)+Double.parseDouble(quant.getText().toString());
-                if(!quantitat.isNaN()) {
+                Double quantitat = null;
+                Double total = null;
+                try{
+                    quantitat = Double.parseDouble(quant.getText().toString());//podria ser un camp buit i causar una excepcio
+                    total = bbdd.getTotalUltima(id)+Double.parseDouble(quant.getText().toString());
+
+                }catch (NumberFormatException n){
+                    System.out.println(n);
+                }
+                if(quantitat != null) {
                     if (total >=0 || total < 0 && negatiu) {
                         bbdd.insertEntry(conceptet, quantitat, id, total);
                         finish();

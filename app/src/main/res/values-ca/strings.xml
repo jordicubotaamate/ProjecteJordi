@@ -36,4 +36,5 @@
     <string name="title_activity_scrolling">Creèdits</string>
     <string name="title_activity_settings">Paràmetres</string>
     <string name="user">Configuracions de l\'usuari</string>
+    <string name="aplicar">Crear Transacció</string>
 </resources>

@@ -174,7 +174,7 @@
     <string name="novaTrans">New Transaction</string>
     <string name="quantitat">Quantity</string>
     <string name="concepte">Concept</string>
-    <string name="aplicar">Apply</string>
+    <string name="aplicar">Create Transaction</string>
     <string name="negatiu">Enable negative charges</string>
     <string name="negatiuText">Allow the user spend money that he doesn\'t have</string>
     <string name="decimals">Show decimals</string>

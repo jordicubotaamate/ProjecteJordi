@@ -32,4 +32,6 @@
     <string name="title_activity_register">Regístrate</string>
     <string name="title_activity_scrolling">Créditos</string>
     <string name="title_activity_settings">Ajustes</string>
+    <string name="user">Configuraciones del usuario</string>
+    <string name="aplicar">Crear Transacción</string>
 </resources>

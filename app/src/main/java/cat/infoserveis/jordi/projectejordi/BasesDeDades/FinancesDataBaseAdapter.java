@@ -63,7 +63,7 @@ public class FinancesDataBaseAdapter
 
         // Insertem la columna a la BBDD
         db.insert("FINANCES", null, newValues);
-        Toast.makeText(context, "Sessió iniciada correctament", Toast.LENGTH_SHORT).show();
+        //DEBUGGING Toast.makeText(context, "Sessió iniciada correctament", Toast.LENGTH_SHORT).show();
     }
 
     public ArrayList<Transaccio> getTransaccions(int IDowner)
