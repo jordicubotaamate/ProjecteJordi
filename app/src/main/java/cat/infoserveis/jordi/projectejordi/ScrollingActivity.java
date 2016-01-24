@@ -4,8 +4,10 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.NavUtils;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.MenuItem;
 import android.view.View;
 
 import com.google.android.gms.appindexing.Action;
@@ -21,11 +23,24 @@ public class ScrollingActivity extends AppCompatActivity {
     private GoogleApiClient client;
 
     @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            // Per fer el botó enrere a la barra. I no perdre dades.
+            case android.R.id.home:
+                onBackPressed();
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_scrolling);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
 
 
         final String mEmail;
@@ -72,6 +87,8 @@ public class ScrollingActivity extends AppCompatActivity {
         );
         AppIndex.AppIndexApi.start(client, viewAction);
     }
+
+
 
     @Override
     public void onStop() {

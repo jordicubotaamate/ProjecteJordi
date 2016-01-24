@@ -44,10 +44,26 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        //Restaurem si cliquem enrere
+        if (savedInstanceState != null){
+            id = savedInstanceState.getInt("IDb");
+            email = savedInstanceState.getString("emailb");
+        }
+        else
+        {
+            //Agafem dades d lintent
+            Intent intent = getIntent();
+
+            id = intent.getIntExtra("ID",1000);
+            email = intent.getStringExtra("mail");
+
+        }
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+
 
         novaTrans = new Intent(MainActivity.this, NovaTransaccio.class);
 
@@ -79,11 +95,6 @@ public class MainActivity extends AppCompatActivity
         nom = sh.getString("userName","Nicolás");
 
 
-        //Agafem dades d lintent
-        Intent intent = getIntent();
-
-        id = intent.getIntExtra("ID",1000);
-        email = intent.getStringExtra("mail");
 
 
         //A StackOverflow m'han recomanat fer aixo per evitar un nullPointer a la barra lateral:
@@ -167,6 +178,7 @@ public class MainActivity extends AppCompatActivity
             return false;
         } else if (id == R.id.nav_manage) {
             Intent intentSettings = new Intent(this, SettingsActivity.class);
+            intentSettings.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             MainActivity.this.startActivity(intentSettings);
             return false;
         } else if (id == R.id.nav_share) {
@@ -221,4 +233,19 @@ public class MainActivity extends AppCompatActivity
         builder.show();
     }
 
+    @Override
+    protected void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
+    }
+
+    protected void onSaveInstanceState(Bundle icicle) {
+        super.onSaveInstanceState(icicle);
+        icicle.putInt("IDb", id);
+        icicle.putString("emailb",email);
+    }
+
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+    }
 }
