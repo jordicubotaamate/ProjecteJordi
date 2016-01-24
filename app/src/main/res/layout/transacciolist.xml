@@ -18,10 +18,9 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="Comentari"
         android:id="@+id/Comentari"
-        android:layout_alignParentTop="true"
-        android:layout_toRightOf="@+id/Transaccio"
-        android:layout_toEndOf="@+id/Transaccio"
-        android:layout_marginLeft="10dp" />
+        android:layout_below="@+id/Transaccio"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -33,4 +32,5 @@
         android:text="Total: 1000"
         android:textAlignment="textEnd"
         android:layout_toEndOf="@+id/Comentari" />
+
 </RelativeLayout>
