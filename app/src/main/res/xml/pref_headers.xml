@@ -8,9 +8,9 @@
         android:title="@string/TransactionsandMoney" />
 
     <header
-        android:fragment="cat.infoserveis.jordi.projectejordi.SettingsActivity$NotificationPreferenceFragment"
+        android:fragment="cat.infoserveis.jordi.projectejordi.SettingsActivity$ParametresUsuariFragment"
         android:icon="@drawable/ic_info_black_24dp"
-        android:title="@string/pref_header_notifications" />
+        android:title="@string/user" />
 
 
 

@@ -128,10 +128,10 @@
     <string name="pref_default_display_name">John Smith</string>
 
     <string name="pref_title_add_friends_to_messages">Add friends to messages</string>
-    <string-array name="pref_example_list_titles">
-        <item>Always</item>
-        <item>When possible</item>
-        <item>Never</item>
+    <string-array name="moneda">
+        <item>Euro</item>
+        <item>Dolar</item>
+        <item>Pound</item>
     </string-array>
     <string-array name="pref_example_list_values">
         <item>1</item>
@@ -181,4 +181,6 @@
     <string name="decimalsText">Show on every transaction decimals</string>
     <string name="TransactionsandMoney">Transactions and Money</string>
     <string name="insufficient">Insufficient money</string>
+    <string name="moneda">Currency</string>
+    <string name="user">User settings</string>
 </resources>
