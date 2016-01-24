@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Projecte Jordi</string>
+    <string name="Communicate">Comunicaciones</string>
+    <string name="SignUp">Crear Cuenta</string>
+    <string name="Tools">Herramientas</string>
+    <string name="Transactions">Transacciones</string>
+    <string name="TransactionsandMoney">Transacciones y Dinero</string>
+    <string name="action_settings">Ajustes</string>
+    <string name="action_sign_in">Iniciar sesión</string>
+    <string name="action_sign_in_short">Iniciar sessión</string>
+    <string name="concepte">Concepto</string>
+    <string name="decimals">Mostrar decimales</string>
+    <string name="decimalsText">Mostrar los decimales en todas las transacciones</string>
+    <string name="error_field_required">Este campo es obligatorio</string>
+    <string name="error_incorrect_password">Este password es incorrecto</string>
+    <string name="error_invalid_email">Este email no es válido</string>
+    <string name="error_invalid_password">El password es demasiado corto</string>
+    <string name="error_taken_email">Este email ya está registrado</string>
+    <string name="insufficient">Insuficiente dinero</string>
+    <string name="moneda">Moneda</string>
+    <string name="negatiu">Permitir transacciones negativas</string>
+    <string name="negatiuText">Permitir que el usuario pueda gastar más dinero del que tiene y quedar en negativo</string>
+    <string name="novaTrans">Nueva Transacción</string>
+    <string name="pref_default_display_name">Nicolás Torrubiano</string>
+    <string name="quantitat">Cantidad</string>
+    <string name="reset">Resetear</string>
+    <string name="resetText">Esto borrará todas las transacciones del usuario, está usted seguro?</string>
+    <string name="send">Enviar</string>
+    <string name="share">Compartir</string>
+    <string name="title_activity_main">Control de Gastos</string>
+    <string name="title_activity_register">Regístrate</string>
+    <string name="title_activity_scrolling">Créditos</string>
+    <string name="title_activity_settings">Ajustes</string>
+</resources>

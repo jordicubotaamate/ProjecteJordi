@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Projecte Jordi</string>
+    <string name="Communicate">Comunicacions</string>
+    <string name="SignUp">Crear compte</string>
+    <string name="Tools">Eines</string>
+    <string name="Transactions">Transaccions</string>
+    <string name="TransactionsandMoney">Transaccions i Diners</string>
+    <string name="action_settings">Paràmetres</string>
+    <string name="action_sign_in">Iniciar sessió</string>
+    <string name="action_sign_in_short">Iniciar sessió</string>
+    <string name="concepte">Contepte</string>
+    <string name="decimals">Mostrar decimals</string>
+    <string name="decimalsText">Mostrar els decimals a totes les transaccions</string>
+    <string name="error_field_required">Aquest camp es obligatori</string>
+    <string name="error_incorrect_password">Aquest password és incorrecte</string>
+    <string name="error_invalid_email">Aquest email no és vàlid</string>
+    <string name="error_invalid_password">El password és massa curt</string>
+    <string name="error_taken_email">Aquet email ja està registrat</string>
+    <string name="insufficient">Diners insuficients</string>
+    <string name="large_text"></string>
+    <string name="moneda">Moneda</string>
+    <string name="negatiu">Permetre transaccions negatives</string>
+    <string name="negatiuText">Permetre que l\'usuari pugui gastar més diners del que té i quedar en negatiu</string>
+    <string name="novaTrans">Nova Transacció</string>
+    <string name="permission_rationale"></string>
+    <string name="pref_default_display_name">Nicolás Torrubiano</string>
+    <string name="prompt_password"></string>
+    <string name="quantitat">Quantitat</string>
+    <string name="reset">Resetejar</string>
+    <string name="resetText">Això esborrarà totes les transaccions de l\'usuari, està vostè segur?</string>
+    <string name="send">Enviar</string>
+    <string name="share">Compartir</string>
+    <string name="title_activity_main">Control de Despeses</string>
+    <string name="title_activity_register">Registrat</string>
+    <string name="title_activity_scrolling">Creèdits</string>
+    <string name="title_activity_settings">Paràmetres</string>
+    <string name="user">Configuracions de l\'usuari</string>
+</resources>
