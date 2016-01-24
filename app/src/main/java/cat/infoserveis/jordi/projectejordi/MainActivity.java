@@ -7,11 +7,8 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
-import android.preference.Preference;
 import android.preference.PreferenceManager;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -21,10 +18,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -157,7 +152,7 @@ public class MainActivity extends AppCompatActivity
             return true;
         }
         else if (id == R.id.JordiCubotaAmate) {
-            Intent intentSettings = new Intent(this, ScrollingActivity.class);
+            Intent intentSettings = new Intent(this, Credits.class);
             MainActivity.this.startActivity(intentSettings);
             return true;
         }
@@ -182,11 +177,19 @@ public class MainActivity extends AppCompatActivity
             MainActivity.this.startActivity(intentSettings);
             return false;
         } else if (id == R.id.nav_share) {
+            Intent intent = new Intent(Intent.ACTION_SEND);
+            intent.setType("text/plain");
 
-            Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.google.com"));
-            startActivity(browserIntent);
+            intent.putExtra(Intent.EXTRA_TEXT, getString(R.string.url)+" https://github.com/jordicubotaamate/ProjecteJordi");//Envio a algu la meva aplicacio
+
+            startActivity(Intent.createChooser(intent, "Send Email"));
         } else if (id == R.id.nav_send) {
+            Intent intent = new Intent(Intent.ACTION_SEND);
+            intent.setType("text/plain");
 
+            intent.putExtra(Intent.EXTRA_TEXT, getString(R.string.totalDinersString)+" "+financesBBDD.getTotalUltima(this.id));//Envio a algu el meu total de diners com a text.
+
+            startActivity(Intent.createChooser(intent, "Envia Info"));
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

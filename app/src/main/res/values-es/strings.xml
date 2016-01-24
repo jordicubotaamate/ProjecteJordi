@@ -34,4 +34,6 @@
     <string name="title_activity_settings">Ajustes</string>
     <string name="user">Configuraciones del usuario</string>
     <string name="aplicar">Crear Transacción</string>
+    <string name="totalDinersString">Mi total de dinero actualmente es de: </string>
+    <string name="url">Hecha un vistazo a esta aplicación de finanzas personales hecha por Jordi Cubota Amate: </string>
 </resources>

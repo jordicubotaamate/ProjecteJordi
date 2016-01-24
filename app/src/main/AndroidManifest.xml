@@ -31,7 +31,7 @@
                 android:value="cat.infoserveis.jordi.projectejordi.LoginActivity" />
         </activity>
         <activity
-            android:name=".ScrollingActivity"
+            android:name=".Credits"
             android:label="@string/title_activity_scrolling"
             android:parentActivityName=".MainActivity"
             android:theme="@style/AppTheme.NoActionBar">

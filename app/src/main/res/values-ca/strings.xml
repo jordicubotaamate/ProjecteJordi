@@ -37,4 +37,6 @@
     <string name="title_activity_settings">Paràmetres</string>
     <string name="user">Configuracions de l\'usuari</string>
     <string name="aplicar">Crear Transacció</string>
+    <string name="totalDinersString">El meu total de diners actualment és de: </string>
+    <string name="url">Fes un cop d\'ull a aquesta aplicació de finances personals feta per en Jordi Cubota Amate: </string>
 </resources>

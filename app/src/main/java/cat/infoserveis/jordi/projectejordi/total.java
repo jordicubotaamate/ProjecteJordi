@@ -7,6 +7,9 @@ import android.widget.RemoteViews;
 
 /**
  * Implementation of App Widget functionality.
+ *
+ * PROVES PERO NO TINC TEMPS PER IMPLEMENTARHO FINALMENT
+ * (Widget inútil que només mostra text)
  */
 public class total extends AppWidgetProvider {
 

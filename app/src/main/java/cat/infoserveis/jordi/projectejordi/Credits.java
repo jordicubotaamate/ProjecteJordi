@@ -1,5 +1,6 @@
 package cat.infoserveis.jordi.projectejordi;
 
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -14,7 +15,7 @@ import com.google.android.gms.appindexing.Action;
 import com.google.android.gms.appindexing.AppIndex;
 import com.google.android.gms.common.api.GoogleApiClient;
 
-public class ScrollingActivity extends AppCompatActivity {
+public class Credits extends AppCompatActivity {
 
     /**
      * ATTENTION: This was auto-generated to implement the App Indexing API.
@@ -58,8 +59,11 @@ public class ScrollingActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, mEmail, Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                Intent emailIntent = new Intent(Intent.ACTION_SENDTO, Uri.fromParts(
+                        "mailto","jordi@infoserveis.cat", null));
+                emailIntent.putExtra(Intent.EXTRA_SUBJECT, "Projecte Jordi");
+                emailIntent.putExtra(Intent.EXTRA_TEXT, "M'ha agradat l'aplicació. ");
+                startActivity(Intent.createChooser(emailIntent, "Envia Email..."));
             }
         });
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
