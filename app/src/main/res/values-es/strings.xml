@@ -8,7 +8,7 @@
     <string name="TransactionsandMoney">Transacciones y Dinero</string>
     <string name="action_settings">Ajustes</string>
     <string name="action_sign_in">Iniciar sesión</string>
-    <string name="action_sign_in_short">Iniciar sessión</string>
+    <string name="action_sign_in_short">Iniciar sesión</string>
     <string name="concepte">Concepto</string>
     <string name="decimals">Mostrar decimales</string>
     <string name="decimalsText">Mostrar los decimales en todas las transacciones</string>
