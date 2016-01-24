@@ -1,9 +1,13 @@
 package cat.infoserveis.jordi.projectejordi;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.Preference;
+import android.preference.PreferenceManager;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -14,6 +18,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 
@@ -22,8 +27,13 @@ import cat.infoserveis.jordi.projectejordi.BasesDeDades.FinancesDataBaseAdapter;
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
     FinancesDataBaseAdapter financesBBDD;
-//    int id;
+    int id;
     String email;
+    Intent novaTrans;
+    ListView l;//transaccions mostrades.
+
+    public boolean decimals;
+    public boolean negatiu;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,12 +42,16 @@ public class MainActivity extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        novaTrans = new Intent(MainActivity.this, NovaTransaccio.class);
+
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                /*Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                        .setAction("Action", null).show();*/
+                novaTrans.putExtra("id",id);
+                MainActivity.this.startActivity(novaTrans);
             }
         });
 
@@ -50,41 +64,46 @@ public class MainActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
+        //CARREGUEM LES PREFERENCIES
+        SharedPreferences sh = PreferenceManager
+                .getDefaultSharedPreferences(this);
+        decimals = sh.getBoolean("decimals",false);
+        negatiu = sh.getBoolean("negatiu",false);
+
         //Agafem dades d lintent
         Intent intent = getIntent();
 
-        int id = intent.getIntExtra("ID",10);
-        //email = intent.getStringExtra("mail");
+        id = intent.getIntExtra("ID",1000);
+        email = intent.getStringExtra("mail");
+
+
+        //A StackOverflow m'han recomanat fer aixo per evitar un nullPointer a la barra lateral:
+        View header = navigationView.getHeaderView(0);
+
+        TextView nomtv = (TextView) header.findViewById(R.id.nomTV);
+        TextView emailtv = (TextView) header.findViewById(R.id.emailTV);
+        nomtv.setText("Nom TODO");
+        emailtv.setText(email);
+
+
         //BBDD
         financesBBDD = new FinancesDataBaseAdapter(this);
         financesBBDD = financesBBDD.open();
 
-        financesBBDD.insertEntry(69.2,id,100.12);
-        financesBBDD.insertEntry(-12.233,id,104.12);
-        financesBBDD.insertEntry(-649.2,id,1004.12);
+        /*financesBBDD.insertEntry(10*id,id,100.12);
+        financesBBDD.insertEntry(-12.233*id,id,104.12);*/
+        //financesBBDD.insertEntry("TEST",649.2*id,id,1004.12);
 
-        ListView l = (ListView) findViewById(R.id.listView);
-
-
-        Transaccio t1 = new Transaccio("Nòmina",5000,6000);
-        Transaccio t2 = new Transaccio("Cotxe",-4000,2000);
-        Transaccio t3 = new Transaccio("Hotel Mireia",-330,1670);
-        Transaccio t4 = new Transaccio("Loteria",100000,100670);
-        Transaccio t5 = new Transaccio("Tous",-1000,90670);
-        Transaccio t6 = new Transaccio("Viatge",-4000,50670);
+        l = (ListView) findViewById(R.id.listView);
 
 
-        ArrayList<Transaccio> ArrTran = new ArrayList<>();
-        ArrTran.add(t1);
-        ArrTran.add(t2);
-        ArrTran.add(t3);
-        ArrTran.add(t4);
-        ArrTran.add(t5);
-        ArrTran.add(t6);
 
 
-        TransaccioAdaptador adap = new TransaccioAdaptador(this, ArrTran);
-        l.setAdapter(adap);
+
+        //TransaccioAdaptador adap = creaTransaccio(financesBBDD);
+        //l.setAdapter(adap);
+
+        l.setAdapter(creaTransaccions(financesBBDD));
     }
 
     @Override
@@ -150,4 +169,16 @@ public class MainActivity extends AppCompatActivity
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
+
+    public TransaccioAdaptador creaTransaccions(FinancesDataBaseAdapter bbdd){
+        ArrayList<Transaccio> ArrTran = bbdd.getTransaccions(id);
+        return  new TransaccioAdaptador(this, ArrTran);
+    }
+
+    @Override
+    protected void onResume() {//Recarreguem la llista cada cop que tornem a aquesta activitat, per exemple: quan acabem de crear una transaccio
+        l.setAdapter(creaTransaccions(financesBBDD));
+        super.onResume();
+    }
+
 }

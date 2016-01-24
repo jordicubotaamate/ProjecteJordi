@@ -23,10 +23,11 @@
         android:layout_height="wrap_content"
         android:paddingTop="@dimen/nav_header_vertical_spacing"
         android:text="Jordi Cubota Amate"
-        android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        android:id="@+id/nomTV" />
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/emailTV"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="jordi@infoserveis.cat" />

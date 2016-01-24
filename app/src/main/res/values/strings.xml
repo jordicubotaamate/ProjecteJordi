@@ -171,4 +171,14 @@
     <string name="pref_ringtone_silent">Silent</string>
 
     <string name="pref_title_vibrate">Vibrate</string>
+    <string name="novaTrans">Nova Transacció</string>
+    <string name="quantitat">Quantitat</string>
+    <string name="concepte">Concepte</string>
+    <string name="aplicar">Aplicar</string>
+    <string name="negatiu">Enable negative charges</string>
+    <string name="negatiuText">Allow the user spend money that he doesn\'t have</string>
+    <string name="decimals">Show decimals</string>
+    <string name="decimalsText">Show on every transaction decimals</string>
+    <string name="TransactionsandMoney">Transactions and Money</string>
+    <string name="insufficient">Insufficient money</string>
 </resources>

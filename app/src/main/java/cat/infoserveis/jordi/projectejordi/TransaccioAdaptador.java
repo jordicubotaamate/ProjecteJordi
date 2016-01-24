@@ -6,7 +6,9 @@ package cat.infoserveis.jordi.projectejordi;
 import java.util.ArrayList;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.graphics.Color;
+import android.preference.PreferenceManager;
 import android.provider.CalendarContract;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -33,11 +35,14 @@ public class TransaccioAdaptador extends BaseAdapter
     private ArrayList<Transaccio> data;
     private LayoutInflater inflater = null;
 
+    private Context c;
+
     public TransaccioAdaptador(Context c, ArrayList<Transaccio> d)
     {
         Log.v(TAG, "Constructing CustomAdapter");
 
         this.data = d;
+        this.c = c;
         inflater = LayoutInflater.from(c);
     }
 
@@ -112,10 +117,36 @@ public class TransaccioAdaptador extends BaseAdapter
         } else
             holder = (ViewHolder) convertView.getTag();
 
+        //Careguem les preferencies
+        SharedPreferences sh = PreferenceManager
+                .getDefaultSharedPreferences(c);//Hem dagafar el context de lactivitat. El passem al constructor
+        boolean decimals = sh.getBoolean("decimals",false);
+        char moneda = '€';
+        // Posem tot a les vistes
+        double transaccio;
+        if(decimals)
+        {
+            //Transaccio:
+            transaccio = data.get(position).getTransaccio();
+            holder.transaccio.setText(String.format("%.2f", transaccio)+moneda);//Maxim mostrem 2 decimals
+            //total:
+            holder.total.setText(String.format("%.2f", data.get(position).getTotal())+moneda);
+        }
+        else
+        {
+            //trans
+            transaccio = (int)(data.get(position).getTransaccio());
+            holder.transaccio.setText(Integer.toString((int)transaccio)+moneda);//No mostrem decimals
 
-        // Setting all values in listview
-        Double transaccio = data.get(position).getTransaccio();
-        holder.transaccio.setText(Double.toString(transaccio));
+            //total
+            holder.total.setText(Integer.toString((int)data.get(position).getTotal())+moneda);
+        }
+
+
+
+
+
+
         if(transaccio<0)
         {
             holder.transaccio.setTextColor(Color.RED);
@@ -125,7 +156,7 @@ public class TransaccioAdaptador extends BaseAdapter
             holder.transaccio.setTextColor(Color.rgb(52,154,78));
         }
         holder.comentari.setText(data.get(position).getConcepte());
-        holder.total.setText(Double.toString(data.get(position).getTotal()));
+
 
         return convertView;
     }
@@ -182,4 +213,12 @@ public class TransaccioAdaptador extends BaseAdapter
             d.setChecked(!d.getChecked());
         }
     };*/
+    public static double round(double value, int places) {
+        if (places < 0) throw new IllegalArgumentException();
+
+        long factor = (long) Math.pow(10, places);
+        value = value * factor;
+        long tmp = Math.round(value);
+        return (double) tmp / factor;
+    }
 }

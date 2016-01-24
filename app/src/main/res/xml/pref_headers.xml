@@ -4,17 +4,14 @@
 
     <header
         android:fragment="cat.infoserveis.jordi.projectejordi.SettingsActivity$GeneralPreferenceFragment"
-        android:icon="@drawable/ic_info_black_24dp"
-        android:title="@string/pref_header_general" />
+        android:icon="@drawable/ic_menu_manage"
+        android:title="@string/TransactionsandMoney" />
 
     <header
         android:fragment="cat.infoserveis.jordi.projectejordi.SettingsActivity$NotificationPreferenceFragment"
-        android:icon="@drawable/ic_notifications_black_24dp"
+        android:icon="@drawable/ic_info_black_24dp"
         android:title="@string/pref_header_notifications" />
 
-    <header
-        android:fragment="cat.infoserveis.jordi.projectejordi.SettingsActivity$DataSyncPreferenceFragment"
-        android:icon="@drawable/ic_sync_black_24dp"
-        android:title="@string/pref_header_data_sync" />
+
 
 </preference-headers>

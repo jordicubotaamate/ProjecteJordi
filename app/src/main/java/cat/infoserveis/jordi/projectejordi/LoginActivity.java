@@ -346,9 +346,9 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
             if (success) {
                 Intent intentCorrecte = new Intent(LoginActivity.this, MainActivity.class);
-                //intentCorrecte.putExtra("mail",mEmail);
+                intentCorrecte.putExtra("mail",mEmail);
                 intentCorrecte.putExtra("ID",loginDataBaseAdapter.getUserID(mEmail));
-                loginDataBaseAdapter.close();
+                //loginDataBaseAdapter.close();
                 LoginActivity.this.startActivity(intentCorrecte);
             } else {
                 mPasswordView.setError(getString(R.string.error_incorrect_password));
