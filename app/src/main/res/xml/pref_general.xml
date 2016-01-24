@@ -12,13 +12,5 @@
         android:summary="@string/decimalsText"
         android:title="@string/decimals" />
 
-    <ListPreference
-        android:defaultValue="-1"
-        android:entries="@array/moneda"
-        android:entryValues="@array/moneda"
-        android:key="moneda"
-        android:negativeButtonText="@null"
-        android:positiveButtonText="@null"
-        android:title="@string/pref_title_add_friends_to_messages" />
 
 </PreferenceScreen>

@@ -118,4 +118,14 @@ public class FinancesDataBaseAdapter
         cursor.close();
         return total;
     }
+
+    public void deleteAll(int IDowner)
+    {
+        String[] whereArgs = new String[] {
+                Integer.toString(IDowner)
+        };
+        String queryString = "delete from FINANCES where IDOWNER = ?;";
+        //db.rawQuery(queryString, whereArgs);
+        db.delete("FINANCES","IDOWNER = ?", whereArgs);
+    }
 }

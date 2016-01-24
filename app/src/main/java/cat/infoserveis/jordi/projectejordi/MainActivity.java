@@ -1,7 +1,11 @@
 package cat.infoserveis.jordi.projectejordi;
 
+import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.os.Bundle;
 import android.preference.Preference;
 import android.preference.PreferenceManager;
@@ -17,8 +21,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -29,6 +35,7 @@ public class MainActivity extends AppCompatActivity
     FinancesDataBaseAdapter financesBBDD;
     int id;
     String email;
+    String nom;
     Intent novaTrans;
     ListView l;//transaccions mostrades.
 
@@ -69,6 +76,8 @@ public class MainActivity extends AppCompatActivity
                 .getDefaultSharedPreferences(this);
         decimals = sh.getBoolean("decimals",false);
         negatiu = sh.getBoolean("negatiu",false);
+        nom = sh.getString("userName","Nicolás");
+
 
         //Agafem dades d lintent
         Intent intent = getIntent();
@@ -82,7 +91,7 @@ public class MainActivity extends AppCompatActivity
 
         TextView nomtv = (TextView) header.findViewById(R.id.nomTV);
         TextView emailtv = (TextView) header.findViewById(R.id.emailTV);
-        nomtv.setText("Nom TODO");
+        nomtv.setText(nom);
         emailtv.setText(email);
 
 
@@ -151,16 +160,19 @@ public class MainActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_camera) {
+        if (id == R.id.nav_transactions) {
             // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
-
-        } else if (id == R.id.nav_slideshow) {
-
+        } else if (id == R.id.nav_resetTOT) {
+            resetDialog(this,getString(R.string.reset),getString(R.string.resetText));
+            return false;
         } else if (id == R.id.nav_manage) {
-
+            Intent intentSettings = new Intent(this, SettingsActivity.class);
+            MainActivity.this.startActivity(intentSettings);
+            return false;
         } else if (id == R.id.nav_share) {
 
+            Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.google.com"));
+            startActivity(browserIntent);
         } else if (id == R.id.nav_send) {
 
         }
@@ -178,7 +190,35 @@ public class MainActivity extends AppCompatActivity
     @Override
     protected void onResume() {//Recarreguem la llista cada cop que tornem a aquesta activitat, per exemple: quan acabem de crear una transaccio
         l.setAdapter(creaTransaccions(financesBBDD));
+
+        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        //navigationView.setNavigationItemSelectedListener(this);
+
+        View header = navigationView.getHeaderView(0);
+
+        TextView nomtv = (TextView) header.findViewById(R.id.nomTV);
+        TextView emailtv = (TextView) header.findViewById(R.id.emailTV);
+        nomtv.setText(nom);
+        emailtv.setText(email);
         super.onResume();
+    }
+
+    public void resetDialog(Activity activity, String title, CharSequence message) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(activity);
+
+        if (title != null) builder.setTitle(title);
+
+        builder.setMessage(message);
+        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                financesBBDD.deleteAll(id);
+                l.setAdapter(creaTransaccions(financesBBDD));//Per recarregar les transaccions (buides)
+
+            }
+        });
+        builder.setNegativeButton("Cancel", null);
+        builder.show();
     }
 
 }

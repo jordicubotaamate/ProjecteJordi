@@ -4,6 +4,7 @@ package cat.infoserveis.jordi.projectejordi;
  * Created by jordi on 20/01/16.
  */
 import java.util.ArrayList;
+import java.util.StringTokenizer;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -121,7 +122,24 @@ public class TransaccioAdaptador extends BaseAdapter
         SharedPreferences sh = PreferenceManager
                 .getDefaultSharedPreferences(c);//Hem dagafar el context de lactivitat. El passem al constructor
         boolean decimals = sh.getBoolean("decimals",false);
+
+        String m = sh.getString("moneda","Euro");
+
         char moneda = '€';
+
+        switch (m){
+            case "Euro":
+                moneda = '€';
+                break;
+            case "Dolar":
+                moneda = '$';
+                break;
+            case "Pound":
+                moneda = '£';
+                break;
+
+        }
+
         // Posem tot a les vistes
         double transaccio;
         if(decimals)

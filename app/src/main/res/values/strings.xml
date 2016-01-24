@@ -183,4 +183,6 @@
     <string name="insufficient">Insufficient money</string>
     <string name="moneda">Currency</string>
     <string name="user">User settings</string>
+    <string name="reset">Reset All</string>
+    <string name="resetText">This will reset all user transactions, are you sure?</string>
 </resources>
