@@ -12,7 +12,11 @@ import android.database.sqlite.SQLiteDatabase;
 import android.provider.Settings;
 import android.widget.Toast;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.TimeZone;
 
 import cat.infoserveis.jordi.projectejordi.Transaccio;
 
@@ -24,7 +28,7 @@ public class FinancesDataBaseAdapter
     // TODO: Create public field for each column in your table.
     // SQL Statement to create a new database.
     static final String DATABASE_CREATE = "create table "+"FINANCES"+
-            "( " +"ID"+" integer primary key autoincrement,"+ "IDOWNER  integer, CONCEPT text, AMOUNT real, "/*DATE DATE,*/+" TOTALMONEY real); ";
+            "( " +"ID"+" integer primary key autoincrement,"+ "IDOWNER  integer, CONCEPT text, AMOUNT real, DATE integer, TOTALMONEY real); ";
     // Variable to hold the database instance*/
     public  SQLiteDatabase db;
     // Context of the application using the database.
@@ -51,15 +55,16 @@ public class FinancesDataBaseAdapter
         return db;
     }
 
-    public void insertEntry(String concept, double amount, int IDowner/*, Date date*/, double totalMoney)
+    public void insertEntry(String concept, double amount, int IDowner, long date, double totalMoney)
     {
         ContentValues newValues = new ContentValues();
         // Assignem valors
         newValues.put("CONCEPT",concept);
         newValues.put("IDOWNER",IDowner);
         newValues.put("AMOUNT", amount);
-        //newValues.put("DATE",);
+        newValues.put("DATE",date);
         newValues.put("TOTALMONEY",totalMoney);
+
 
         // Insertem la columna a la BBDD
         db.insert("FINANCES", null, newValues);
@@ -80,7 +85,7 @@ public class FinancesDataBaseAdapter
 
         ArrayList<Transaccio> ar = new ArrayList<>();
         while (cursor.moveToNext()) {
-            Transaccio t = new Transaccio(cursor.getString(cursor.getColumnIndex("CONCEPT")),cursor.getDouble(cursor.getColumnIndex("AMOUNT")),cursor.getDouble(cursor.getColumnIndex("TOTALMONEY")),IDowner);//new Transaccio("CONCEPTE",cursor.getDouble(cursor.getColumnIndex("AMOUNT")),cursor.getDouble(cursor.getColumnIndex("TOTAL")),cursor.getInt(cursor.getColumnIndex("IDOWNER")));
+            Transaccio t = new Transaccio(cursor.getString(cursor.getColumnIndex("CONCEPT")),cursor.getDouble(cursor.getColumnIndex("AMOUNT")),cursor.getDouble(cursor.getColumnIndex("TOTALMONEY")),cursor.getLong(cursor.getColumnIndex("DATE")),IDowner);//new Transaccio("CONCEPTE",cursor.getDouble(cursor.getColumnIndex("AMOUNT")),cursor.getDouble(cursor.getColumnIndex("TOTAL")),cursor.getInt(cursor.getColumnIndex("IDOWNER")));
             ar.add(t);
             System.out.print("HEEEE");
         }
@@ -128,4 +133,5 @@ public class FinancesDataBaseAdapter
         //db.rawQuery(queryString, whereArgs);
         db.delete("FINANCES","IDOWNER = ?", whereArgs);
     }
+
 }

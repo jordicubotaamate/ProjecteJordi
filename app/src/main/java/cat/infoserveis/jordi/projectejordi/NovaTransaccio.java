@@ -65,7 +65,7 @@ public class NovaTransaccio extends AppCompatActivity {
                 }
                 if(quantitat != null) {
                     if (total >=0 || total < 0 && negatiu) {
-                        bbdd.insertEntry(conceptet, quantitat, id, total);
+                        bbdd.insertEntry(conceptet, quantitat, id, System.currentTimeMillis(), total);
                         finish();
                     } else {
                         /*Snackbar.make(v, R.string.insufficient, Snackbar.LENGTH_LONG)
