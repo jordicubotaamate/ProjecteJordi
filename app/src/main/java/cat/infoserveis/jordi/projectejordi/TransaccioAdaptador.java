@@ -180,7 +180,7 @@ public class TransaccioAdaptador extends BaseAdapter
         }
         holder.comentari.setText(data.get(position).getConcepte());
 
-        String date = "D"+DateFormat.getInstance().format(data.get(position).getDate());
+        String date = DateFormat.getInstance().format(data.get(position).getDate());
 
         holder.date.setText(date);
 
