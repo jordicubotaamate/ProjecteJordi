@@ -12,18 +12,21 @@ public class Transaccio implements Parcelable {
     private double transaccio;
     private String concepte;
     private double total;
+    private long date;
     private int ID;
 
-    public Transaccio(String concepte, double transaccio, double total, int ID) {
+    public Transaccio(String concepte, double transaccio, double total, long date, int ID) {
         this.concepte = concepte;
         this.transaccio = transaccio;
         this.total = total;
+        this.date = date;
     }
 
     public Transaccio(Parcel in){
         this.transaccio= in.readDouble();
         this.concepte = in.readString();
         this.total = in.readDouble();
+        this.date = in.readLong();
         this.ID = in.readInt();
 
     }
@@ -48,6 +51,10 @@ public class Transaccio implements Parcelable {
         return total;
     }
 
+    public long getDate() {
+        return date;
+    }
+
     public int getID() {
         return ID;
     }
@@ -66,6 +73,7 @@ public class Transaccio implements Parcelable {
         dest.writeDouble(getTransaccio());
         dest.writeString(getConcepte());
         dest.writeDouble(getTotal());
+        dest.writeLong(getDate());
         dest.writeInt(getID());
     }
 

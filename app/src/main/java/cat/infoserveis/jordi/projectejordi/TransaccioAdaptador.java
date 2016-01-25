@@ -3,6 +3,7 @@ package cat.infoserveis.jordi.projectejordi;
 /**
  * Created by jordi on 20/01/16.
  */
+import java.text.DateFormat;
 import java.util.ArrayList;
 import java.util.StringTokenizer;
 
@@ -28,6 +29,7 @@ public class TransaccioAdaptador extends BaseAdapter
         TextView transaccio;
         TextView comentari;
         TextView total;
+        TextView date;
     }
 
     private static final String TAG = "CustomAdapter";
@@ -113,6 +115,9 @@ public class TransaccioAdaptador extends BaseAdapter
             holder.total = (TextView) convertView
                     .findViewById(R.id.Total);
 
+            holder.date = (TextView) convertView
+                    .findViewById(R.id.Date);
+
             convertView.setTag(holder);
 
         } else
@@ -175,6 +180,9 @@ public class TransaccioAdaptador extends BaseAdapter
         }
         holder.comentari.setText(data.get(position).getConcepte());
 
+        String date = DateFormat.getInstance().format(data.get(position).getDate());
+
+        holder.date.setText(date);
 
         return convertView;
     }
