@@ -10,14 +10,19 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import java.util.Calendar;
+import java.util.Date;
 
 import cat.infoserveis.jordi.projectejordi.BasesDeDades.FinancesDataBaseAdapter;
 
 public class NovaTransaccio extends AppCompatActivity {
     int id;
     FinancesDataBaseAdapter bbdd;
+    DatePickerJordi dpicker;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +35,8 @@ public class NovaTransaccio extends AppCompatActivity {
         bbdd = bbdd.open();
 
         id = intent.getIntExtra("id",1000);
+
+
 
 //Careguem les preferencies
         SharedPreferences sh = PreferenceManager
@@ -47,6 +54,12 @@ public class NovaTransaccio extends AppCompatActivity {
 
         Button aplicar = (Button) findViewById(R.id.aplicar);
 
+        EditText datep = (EditText) findViewById(R.id.dateText);
+
+        dpicker = new DatePickerJordi(this,R.id.dateText);
+
+
+
 
 
         aplicar.setOnClickListener(new View.OnClickListener() {
@@ -60,12 +73,15 @@ public class NovaTransaccio extends AppCompatActivity {
                     quantitat = Double.parseDouble(quant.getText().toString());//podria ser un camp buit i causar una excepcio
                     total = bbdd.getTotalUltima(id)+Double.parseDouble(quant.getText().toString());
 
+
                 }catch (NumberFormatException n){
                     System.out.println(n);
                 }
                 if(quantitat != null) {
                     if (total >=0 || total < 0 && negatiu) {
-                        bbdd.insertEntry(conceptet, quantitat, id, System.currentTimeMillis(), total);
+                        Calendar c = Calendar.getInstance();
+                        c.set(dpicker.get_birthYear(),dpicker.get_month(),dpicker.get_day());
+                        bbdd.insertEntry(conceptet, quantitat, id, c.getTimeInMillis(), total);
                         finish();
                     } else {
                         /*Snackbar.make(v, R.string.insufficient, Snackbar.LENGTH_LONG)

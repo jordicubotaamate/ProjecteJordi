@@ -4,6 +4,7 @@ package cat.infoserveis.jordi.projectejordi;
  * Created by jordi on 20/01/16.
  */
 import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.StringTokenizer;
 
@@ -13,6 +14,7 @@ import android.graphics.Color;
 import android.preference.PreferenceManager;
 import android.provider.CalendarContract;
 import android.util.Log;
+import android.util.StringBuilderPrinter;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -180,9 +182,12 @@ public class TransaccioAdaptador extends BaseAdapter
         }
         holder.comentari.setText(data.get(position).getConcepte());
 
-        String date = DateFormat.getInstance().format(data.get(position).getDate());
+        DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
 
-        holder.date.setText(date);
+        StringBuilder date = new StringBuilder(df.format(data.get(position).getDate()));
+
+
+        holder.date.setText(date.toString());
 
         return convertView;
     }

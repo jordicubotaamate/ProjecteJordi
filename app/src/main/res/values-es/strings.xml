@@ -36,4 +36,5 @@
     <string name="aplicar">Crear Transacción</string>
     <string name="totalDinersString">Mi total de dinero actualmente es de: </string>
     <string name="url">Hecha un vistazo a esta aplicación de finanzas personales hecha por Jordi Cubota Amate: </string>
+    <string name="Date">Fecha</string>
 </resources>
